@@ -41,3 +41,78 @@ streamlit run app.py
 - `src/utils.py` — text extraction, cleaning, scoring helpers
 - `requirements.txt`
 - `sample_resumes/` — sample txt resumes and jd
+
+- Architecture Diagram
+
+-                            ┌─────────────────────────────────┐
+                           │      User Interface (UI)        │
+                           │        Streamlit App            │
+                           └─────────────────────────────────┘
+                                        │
+                                        │ Inputs
+                                        ▼
+             ┌────────────────────────────────────────────────────────┐
+             │                    Input Handling Module               │
+             ├────────────────────────────────────────────────────────┤
+             │ 1. Upload Job Description / Skills (.txt)              │
+             │ 2. Upload Multiple Resumes (PDF / TXT)                 │
+             │ 3. Validate File Types & Sizes                         │
+             └────────────────────────────────────────────────────────┘
+                                        │
+                                        │ Extract Text
+                                        ▼
+             ┌────────────────────────────────────────────────────────┐
+             │                Text Extraction Layer                   │
+             ├────────────────────────────────────────────────────────┤
+             │ - PDF Extraction using PyPDF2                          │
+             │ - TXT Parsing                                          │
+             │ - Unicode Normalization                                 │
+             │ - Clean & Preprocess Text                              │
+             └────────────────────────────────────────────────────────┘
+                                        │
+                                        │ Send Cleaned Resume Texts
+                                        ▼
+             ┌────────────────────────────────────────────────────────┐
+             │                Natural Language Processing             │
+             │                    (NLP Engine)                        │
+             ├────────────────────────────────────────────────────────┤
+             │ - Tokenization                                         │
+             │ - Stopword Removal (NLTK)                              │
+             │ - Lemmatization / Stemming                             │
+             │ - Keyword Extraction                                   │
+             │ - Summary Extraction (Top N sentences)                 │
+             └────────────────────────────────────────────────────────┘
+                                        │
+                                        │ Convert JD + Resume Texts
+                                        ▼
+             ┌────────────────────────────────────────────────────────┐
+             │                 Vectorization Module                   │
+             │                TF-IDF (scikit-learn)                   │
+             ├────────────────────────────────────────────────────────┤
+             │ - Combine JD + All Resume Texts                        │
+             │ - TF-IDF Matrix Generation                             │
+             │ - Cosine Similarity Computation                        │
+             │ - Return Similarity Scores                             │
+             └────────────────────────────────────────────────────────┘
+                                        │
+                                        │ Return Scores
+                                        ▼
+             ┌────────────────────────────────────────────────────────┐
+             │                 Ranking & Scoring Layer                │
+             ├────────────────────────────────────────────────────────┤
+             │ - Sort by Similarity Score                             │
+             │ - Identify Top N Keyword Matches                       │
+             │ - Create Resume Summary (250 chars)                    │
+             │ - Assign Rank (1,2,3,…)                                │
+             └────────────────────────────────────────────────────────┘
+                                        │
+                                        │ Final Structured Output
+                                        ▼
+             ┌────────────────────────────────────────────────────────┐
+             │                Output Generation Module                │
+             ├────────────────────────────────────────────────────────┤
+             │ - Display Table (Rank, Score, Filename, Summary)      │
+             │ - Display Keyword Matches                             │
+             │ - Provide CSV Download Link                           │
+             │ - Show Detailed Result Per Candidate                  │
+             └────────────────────────────────────────────────────────┘

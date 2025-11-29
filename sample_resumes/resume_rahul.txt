@@ -1,0 +1,8 @@
+Rahul Verma
+Email: rahul.verma@example.com
+Phone: +91-90000-22222
+
+Data analyst with 4 years of experience in data analysis, SQL, Excel, Tableau, Python (pandas, numpy), and basic machine learning.
+Prepared dashboards and reports for stakeholders and improved ETL processes.
+Education: B.Tech in Information Technology.
+Skills: SQL, Tableau, Excel, Python, Pandas, Numpy.

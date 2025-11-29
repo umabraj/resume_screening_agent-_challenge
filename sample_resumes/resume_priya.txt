@@ -1,0 +1,8 @@
+Priya Sharma
+Email: priya.sharma@example.com
+Phone: +91-90000-11111
+
+Experienced software engineer with 3 years of experience in Python, Django, REST APIs, SQL, and unit testing.
+Worked on backend systems, data pipelines, and microservices.
+Education: B.E. in Computer Science.
+Skills: Python, Django, REST, SQL, Git, Docker, Linux.
